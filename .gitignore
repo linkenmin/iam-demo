@@ -1,0 +1,82 @@
+# IDE and editor files
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build artifacts
+target/
+build/
+.gradle/
+
+# Dependency directories
+myenv/
+__pycache__/
+.pytest_cache/
+
+# Test reports
+report.xml
+
+# Keycloak realm export (contains sensitive data)
+realm_export.json
+
+# User data files
+users.csv
+
+# Local configuration files
+*.local
+
+# Log files
+*.log
+
+# System files
+*.orig
+*.bak
+
+# Maven
+pom.xml.versionsBackup
+
+# Playwright browsers
+playwright/.local-browsers/
+playwright/.cache/
+
+HELP.md
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+# OS/system junk
+.DS_Store
+Thumbs.db

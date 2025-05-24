@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>IAM Demo - Single Page Test Area</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .logout {
+            background-color: #e74c3c;
+        }
+        .logout:hover {
+            background-color: #c0392b;
+        }
+        .info {
+            margin: 20px auto;
+            text-align: left;
+            max-width: 600px;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            margin-top: 10px;
+            font-family: monospace;
+            font-size: 1em;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            padding: 8px;
+        }
+    </style>
+    <script>
+        async function testApi(path) {
+            const resp = await fetch(path);
+            const text = await resp.text();
+            document.getElementById('testResult').value = text;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>IAM Demo</h1>
+        <div sec:authorize="isAnonymous()">
+            <a class="button" href="/oauth2/authorization/groupware-backend">Login</a>
+        </div>
+        <div sec:authorize="isAuthenticated()">
+            <p>Welcome, <span th:text="${username}">User</span>! Your roles are <span th:text="${userRoles}">[roles]</span></p>
+            <a class="button logout" href="/logout">Logout</a>
+            
+            <div class="info">
+                <h3>User Info:</h3>
+                <textarea th:text="${userInfo}" readonly></textarea>
+            </div>
+            
+            <div class="info">
+                <h3>API Test Area:</h3>
+                <button class="button" onclick="testApi('/api/guest')">Test Guest API</button>
+                <button class="button" onclick="testApi('/api/user')">Test User API</button>
+                <button class="button" onclick="testApi('/api/admin')">Test Admin API</button>
+                <textarea id="testResult" readonly></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
